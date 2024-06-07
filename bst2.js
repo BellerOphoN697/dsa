@@ -1,3 +1,20 @@
+class Node{
+    constructor(value){
+        this.value=value
+        this.left=null
+        this.right=null
+
+    }
+}
+
+class BST{
+    constructor(){
+        this.root=null
+        this.close=null
+        this.large=null
+        this.small=null
+
+    }
 // class Node{
 //     constructor(value){
 //         this.value=value
@@ -485,23 +502,7 @@
 // console.log(bst.root);
 
 
-class Node{
-    constructor(value){
-        this.value=value
-        this.left=null
-        this.right=null
 
-    }
-}
-
-class BST{
-    constructor(){
-        this.root=null
-        this.close=null
-        this.large=null
-        this.small=null
-
-    }
     // insert(value){
     //     const newNode=new Node(value)
 
@@ -700,13 +701,15 @@ class BST{
 
     }
     bfs(node){
-        if(!node) return
-        if(node==this.root) console.log(node.value)
-        else{
-            
+        let queue=[],result=[]
+        queue.push(node)
+        while(queue.length){
+            node=queue.shift()
+            result.push(node.value)
+            if(node.left) queue.push(node.left)
+            if(node.right) queue.push(node.right)
         }
-        this.bfs(node.left)
-        this.bfs(node.right)
+        return result
     }
 
 
@@ -735,4 +738,4 @@ bst.insert(90);
 // console.log(bst.smallest(bst.root)+bst.largest(bst.root))
 // console.log(bst.closest(bst.root,102));
 // console.log(bst.largest(bst.root))
-bst.bfs(bst.root)
+console.log (bst.bfs(bst.root))

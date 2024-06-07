@@ -209,7 +209,7 @@
 
 class Node{
     constructor(){
-        this.children=[]
+        this.children={}
         this.isEndOfWord=false
     }
 }
