@@ -700,19 +700,40 @@ class BST{
             console.log(node.value)
 
     }
-    bfs(node){
-        let queue=[],result=[]
+    bfs(node)
+    {
+        if(!node) return
+        let queue=[], result=[]
         queue.push(node)
         while(queue.length){
-            node=queue.shift()
-            result.push(node.value)
-            if(node.left) queue.push(node.left)
-            if(node.right) queue.push(node.right)
-        }
+            let current=queue.shift()
+            result.push(current.value)
+            if(current.left) queue.push(current.left)
+            if(current.right) queue.push(current.right)
+            }
         return result
     }
-
-
+    closest(node,target){
+        if(!node) return
+        if(!this.close) this.close=node.value
+        if(Math.abs(node.value-target) < Math.abs(target-this.close)){
+            this.close=node.value
+        }
+        if(node.value>target){
+            this.closest(node.left,target)
+        }
+        else{
+            this.closest(node.right,target)
+        }
+        return this.close
+    }
+    search(node,target){
+        let close=this.closest(node,target)
+        if(close==target){
+            return "found"
+        }
+        return "not found"
+    }
 }
 
 const bst=new BST
@@ -738,4 +759,4 @@ bst.insert(90);
 // console.log(bst.smallest(bst.root)+bst.largest(bst.root))
 // console.log(bst.closest(bst.root,102));
 // console.log(bst.largest(bst.root))
-console.log (bst.bfs(bst.root))
+console.log (bst.search(bst.root,102))

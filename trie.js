@@ -207,10 +207,55 @@
 // console.log(tree.search("word"))
 
 
+// class Node{
+//     constructor(){
+//         this.children={}
+//         this.isEndOfWord=false
+//     }
+// }
+
+// class Trie{
+//     constructor(){
+//         this.root=new Node()
+//     }
+//     insert(word){
+//         let node=this.root
+//         for(let char of word){
+//             if(!node.children[char]){
+//                 node.children[char]=new Node()
+//             }
+//             node=node.children[char]
+//         }
+//         node.isEndOfWord=true
+//     }
+//     search(word){
+//         let node=this.root
+//         for(let char of word){
+//             if(!node.children[char]){
+//                 return false
+//             }
+//             node=node.children[char]
+//         }
+//         return node.isEndOfWord
+//     }
+//     prefix(word){
+//         let node=this.root
+//         for(let char of word){
+//             if(!node.children[char]){
+//                 return false
+//             }
+//             node=node.children[char]
+//         }
+//         return true
+//     }
+
+
+// }
+
 class Node{
     constructor(){
         this.children={}
-        this.isEndOfWord=false
+        this.end=false
     }
 }
 
@@ -222,11 +267,12 @@ class Trie{
         let node=this.root
         for(let char of word){
             if(!node.children[char]){
-                node.children[char]=new Node()
+                node.children[char]=new Node
             }
             node=node.children[char]
+
         }
-        node.isEndOfWord=true
+        node.end=true
     }
     search(word){
         let node=this.root
@@ -236,10 +282,10 @@ class Trie{
             }
             node=node.children[char]
         }
-        return node.isEndOfWord
+        return node.end
     }
     prefix(word){
-        let node=this.root
+        let node = this.root
         for(let char of word){
             if(!node.children[char]){
                 return false
@@ -248,11 +294,9 @@ class Trie{
         }
         return true
     }
-
-
 }
 
 
 const tree=new Trie()
 tree.insert("word")
-console.log(tree.search("wor"))
+console.log(tree.prefix("wos"))
